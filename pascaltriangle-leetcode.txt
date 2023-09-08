@@ -1,0 +1,45 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>>tri=new ArrayList<>();
+        if(numRows==0)
+        {
+            return tri;
+        }
+        tri.add(new ArrayList<>());
+        tri.get(0).add(1);
+        for(int i=1;i<numRows;i++)
+        {
+            List<Integer>pre=tri.get(i-1);
+            List<Integer>newrow=new ArrayList<>();
+            newrow.add(1);
+
+            for(int j=1;j<pre.size();j++)
+            {
+                newrow.add(pre.get(j-1)+pre.get(j));
+            }
+
+            newrow.add(1);
+            tri.add(newrow);
+        }
+    return tri;
+    }
+}
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int numRows = 5; // Change this value to generate a different number of rows
+
+        List<List<Integer>> pascalTriangle = solution.generate(numRows);
+
+        // Print Pascal's Triangle row by row
+        for (List<Integer> row : pascalTriangle) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
